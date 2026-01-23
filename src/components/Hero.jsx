@@ -3,7 +3,9 @@ import Button from "./Button";
 import {TiLocationArrow} from "react-icons/ti";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 
+gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [hasClicked,setHasClicked]=useState(false);
@@ -35,11 +37,29 @@ const Hero = () => {
       });
     }
   },{dependencies:[index],
-  revertOnUpdate:true})
+  revertOnUpdate:true});
+  
+  useGSAP(()=>{
+    gsap.set("#video-frame",{
+      clipPath: "polygon(14% 0, 80% 0, 90% 90%, 0% 100%)",
+      borderRadius: "0% 0% 40% 10%"
+    })
+    gsap.from("#video-frame",{
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      borderRadius:"0% 0% 0% 0%",
+      ease:"power1.inOut",
+      scrollTrigger: {
+        trigger: "#video-frame",
+        start: "center center",
+        end: "bottom center",
+        scrub: true,
+      },
+    })
+  })
 
   return (
     <div className="h-dvh w-screen relative overflow-x-hidden">
-      <div className="w-screen h-dvh z-10 relative overflow-hidden rounded-lg bg-blue-75">
+      <div id="video-frame" className="w-screen h-dvh z-10 relative overflow-hidden rounded-lg bg-blue-75">
         <div
           className="polygon(0 0, 100% 0, 100% 100%, 0 100%)  top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] absolute size-64 cursor-pointer overflow-hidden rounded-lg z-30"
           onClick={() => {
@@ -73,13 +93,13 @@ const Hero = () => {
           loop
           muted
         />
-      </div>
-      <h1 className="font-zentry [font-feature-settings:'ss01'_on] text-7xl absolute bottom-5 right-5 z-30 text-blue-75">
+      
+      <h1 className=" font-zentry [font-feature-settings:'ss01'_on] text-9xl absolute bottom-5 right-5 z-30 text-blue-75">
       G<b>A</b>MING
       </h1>
       <div className="absolute top-0 left-0 z-20">
         <div className="mt-24 px-5 sm:px-10">
-          <h1 className="text-7xl text-blue-100 font-zentry [font-feature-settings:'ss01'_on]">
+          <h1 className="text-8xl text-blue-100 font-zentry [font-feature-settings:'ss01'_on]">
             redefi<b>n</b>e
             </h1>
           <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
@@ -93,7 +113,9 @@ const Hero = () => {
             />
         </div>
       </div>
-      <h1 className="font-zentry [font-feature-settings:'ss01'_on] text-7xl absolute bottom-5 right-5 z-20 text-black">
+      </div>
+      
+      <h1 className="font-zentry [font-feature-settings:'ss01'_on] text-9xl absolute bottom-5 right-5 text-black">
       G<b>A</b>MING
       </h1>
     </div>
