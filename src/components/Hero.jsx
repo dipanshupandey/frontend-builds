@@ -4,13 +4,16 @@ import {TiLocationArrow} from "react-icons/ti";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import Loader from "./Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [hasClicked,setHasClicked]=useState(false);
+  const [isLoaded,setIsLoaded]=useState(0);
   const totalVideos = 4;
   const nextVedioRef=useRef(null);
+  
   function handleMiniVideoClick() {
     let updatedIndex = (index + 1) % totalVideos;
     setHasClicked(true);
@@ -52,12 +55,14 @@ const Hero = () => {
         trigger: "#video-frame",
         start: "center center",
         end: "bottom center",
-        scrub: true,
+        scrub: 1,
       },
     })
   })
 
   return (
+    <>
+    {true &&<Loader/>}
     <div className="h-dvh w-screen relative overflow-x-hidden">
       <div id="video-frame" className="w-screen h-dvh z-10 relative overflow-hidden rounded-lg bg-blue-75">
         <div
@@ -119,6 +124,7 @@ const Hero = () => {
       G<b>A</b>MING
       </h1>
     </div>
+    </>
   );
 };
 
