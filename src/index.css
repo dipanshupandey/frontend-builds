@@ -64,3 +64,75 @@ body{
     background-color: #dfdff0;
 
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes colorShift {
+  0% {
+    border-top-color: #8b5cf6;   /* violet-500 */
+    border-right-color: #1f2933; /* dark gray */
+  }
+  33% {
+    border-top-color: #a78bfa;   /* violet-400 */
+    border-right-color: #4b5563; /* gray-600 */
+  }
+  66% {
+    border-top-color: #7c3aed;   /* violet-600 */
+    border-right-color: #111827; /* near black */
+  }
+  100% {
+    border-top-color: #8b5cf6;
+    border-right-color: #1f2933;
+  }
+}
+
+@keyframes loadingPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+    text-shadow: 0 0 0px rgba(139, 92, 246, 0);
+  }
+  25%{
+    opacity: 0.4;
+    transform: scale(0.95);
+    text-shadow: 0 0 0px rgba(139, 92, 246, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+  }
+
+  75% {
+    opacity: 0.4;
+    transform: scale(0.95);
+    text-shadow: 0 0 0px rgba(139, 92, 246, 0);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+    text-shadow: 0 0 0px rgba(139, 92, 246, 0);
+  }
+}
+
+
+
+
+.animate-spin-color {
+  animation:
+    spin 1.2s linear infinite,
+    colorShift 2.5s linear infinite;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+
+}
+
+.animate-loading{
+  animation: loadingPulse 1.6s ease-in-out infinite;
+  text-shadow: 0 0 14px rgba(167, 139, 250, 0.7);
+
+}
