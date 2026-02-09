@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import Button from "./Button";
 import {TiLocationArrow} from "react-icons/ti";
 import gsap from "gsap";
@@ -10,7 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [hasClicked,setHasClicked]=useState(false);
-  const [isLoaded,setIsLoaded]=useState(0);
+  const [isLoaded,setIsLoaded]=useState(false);
+  const [videosLoaded,setVideosLoaded]=useState(0);
   const totalVideos = 4;
   const nextVedioRef=useRef(null);
   
@@ -19,7 +20,10 @@ const Hero = () => {
     setHasClicked(true);
     setIndex(updatedIndex);
   }
-
+  function handleVideoLoad()
+  {
+    setVideosLoaded(prev=>prev+1);
+  }
   useGSAP(()=>{
     if(hasClicked){
       gsap.set('#next-video',{visibility:"visible"});
@@ -59,10 +63,15 @@ const Hero = () => {
       },
     })
   })
-
+  useEffect(()=>{
+    if(videosLoaded===3)   //Because we want 3 videos to be loaded the background video , the next video and the hidden video
+    {
+      setIsLoaded(true);
+    }
+  },[videosLoaded]);
   return (
     <>
-    {true &&<Loader/>}
+    {!isLoaded&&<Loader/>}
     <div className="h-dvh w-screen relative overflow-x-hidden">
       <div id="video-frame" className="w-screen h-dvh z-10 relative overflow-hidden rounded-lg bg-blue-75">
         <div
@@ -79,6 +88,7 @@ const Hero = () => {
               autoPlay
               loop
               muted
+              onLoadedData={handleVideoLoad}
             />
           </div>
         </div>
@@ -89,14 +99,16 @@ const Hero = () => {
           className="z-20 invisible absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-64 object-cover object-center"
           loop
           muted
+          onLoadedData={handleVideoLoad}
         />
 
         <video
-          src={`videos/hero-0.mp4`}
+          src={`videos/hero-${index}.mp4`}
           className="absolute left-0 top-0 size-full object-cover object-center"
           autoPlay
           loop
           muted
+          onLoadedData={handleVideoLoad}
         />
       
       <h1 className=" font-zentry [font-feature-settings:'ss01'_on] text-9xl absolute bottom-5 right-5 z-30 text-blue-75">
@@ -124,6 +136,7 @@ const Hero = () => {
       G<b>A</b>MING
       </h1>
     </div>
+    
     </>
   );
 };
