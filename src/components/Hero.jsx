@@ -47,6 +47,7 @@ const Hero = () => {
   revertOnUpdate:true});
   
   useGSAP(()=>{
+    if(!isLoaded) return ;
     gsap.set("#video-frame",{
       clipPath: "polygon(14% 0, 80% 0, 90% 90%, 0% 100%)",
       borderRadius: "0% 0% 40% 10%"
@@ -62,7 +63,7 @@ const Hero = () => {
         scrub: 1,
       },
     })
-  })
+  },[isLoaded])
   useEffect(()=>{
     if(videosLoaded===3)   //Because we want 3 videos to be loaded the background video , the next video and the hidden video
     {

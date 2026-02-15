@@ -59,7 +59,7 @@
 
 body{
     font-family: 'General Sans',sans-serif;
-    width: 100vdw;
+    width: 100vw;
     overflow-x: hidden;
     background-color: #dfdff0;
 
@@ -135,4 +135,17 @@ body{
   animation: loadingPulse 1.6s ease-in-out infinite;
   text-shadow: 0 0 14px rgba(167, 139, 250, 0.7);
 
+}
+
+.about-subtext {
+  @apply absolute mt-170  left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular text-lg md:max-w-[34rem];
+}
+
+.about-image {
+  @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+}
+
+.mask-clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  will-change: width, height, border-radius;
 }
