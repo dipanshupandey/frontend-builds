@@ -22,6 +22,7 @@ const About = () => {
             width: "100vw",
             height: "100vh",
             borderRadius: 0,
+            
           });
           ScrollTrigger.refresh();
     },[]);
@@ -33,7 +34,7 @@ const About = () => {
             Welcome to Zentry
             </h2>
             
-            <AnimatedTitle/>
+            <AnimatedTitle text="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure" containerClass="mt-5 !text-black text-center"/>
             <div className='about-subtext'>
             <p>The Game of Games begins—your life, now an epic MMORPG</p>
             <p className="text-gray-500">
@@ -43,7 +44,7 @@ const About = () => {
             </div>
         </div>
 
-        <div className='h-dvh w-screen' id="clip">
+        <div className='h-dvh w-screen ' id="clip">
             <div className='mask-clip-path about-image'>
                 <img src="img/about.webp" alt="Background" className='absolute left-0 top-0 size-full object-cover' />
             </div>

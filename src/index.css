@@ -144,8 +144,21 @@ body{
 .about-image {
   @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
 }
+.animated-title {
+  @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
+  /* perspective: 1000px; */
+}
+
+
+.animated-word {
+  @apply   font-zentry font-black opacity-0;
+  transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
+  transform-origin: 50% 50% -150px !important;
+  will-change: opacity, transform;
+}
 
 .mask-clip-path {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   will-change: width, height, border-radius;
+  background-color: red;
 }
